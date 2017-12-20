@@ -8,7 +8,7 @@ var router = express.Router();
 module.exports = router;
 
 router.get('/info', (req, res) => {
-        res.send('Hello this Info route');
+        res.send('Hello this Info routes');
     }, (e) => {
         res.status(400).send(e);
     });
