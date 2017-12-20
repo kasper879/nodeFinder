@@ -1,8 +1,36 @@
-const express = require('express')
-const app = express()
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+var cors = require('cors')
+//var { mongoose } = require('./MongoDb/connection');
+var info = require('./route/info')
 
- var PORT = process.env.PORT || 3000
-app.get('/', (req, res) => res.send('Node finder'))
-app.get('/bitch', (req, res) => res.send('Bitch Found'))
+const port = process.env.PORT || 3000;
+app.use(bodyParser.json());
 
-app.listen(PORT, () => console.log('Example app listening on port 3000!'))
+app.use(function (req, res, next) {
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', '*');
+
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', '*');
+
+  // Pass to next layer of middleware
+  next();
+});
+
+app.use('/api/info/', info);
+
+
+app.listen(port, () => {
+  console.log(`the server is running ${port} `);
+}); 
+
+module.exports = app
