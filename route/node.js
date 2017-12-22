@@ -8,7 +8,7 @@ var router = express.Router();
 module.exports = router;
 
 router.get('/info', (req, res) => {
-        res.send('Hello this Info routes');
+        res.send('How to create a basic express alplikation with node');
     }, (e) => {
         res.status(400).send(e);
     });

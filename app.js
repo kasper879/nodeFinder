@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var cors = require('cors')
 //var { mongoose } = require('./MongoDb/connection');
-var info = require('./route/info')
+var node = require('./route/node')
 
 const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
@@ -26,7 +26,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use('/api/info/', info);
+app.use('/api/teknologi/', node);
 
 
 app.listen(port, () => {
